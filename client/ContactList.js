@@ -1,4 +1,5 @@
 import React from 'react'
+import ContactRow from './ContactRow'
 
 const ContactList = props => {
   const { contacts } = props
@@ -12,15 +13,14 @@ const ContactList = props => {
         <th>Email</th>
       </tr>
       {contacts.map(contact => (
-      <tr key={contact.id}>
-        <td>{contact.name}</td>
-        <td>{contact.phone}</td>
-        <td>{contact.email}</td>
-      </tr>
-        ))}
+        <ContactRow
+          key={contact.id}
+          contact={contact} />
+      ))}
     </tbody>
   </table>
   )
 }
 
 export default ContactList
+
