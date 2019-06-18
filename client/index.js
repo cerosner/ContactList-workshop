@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import ContactList from './ContactList'
 
 function Main() {
   const [contacts, setContacts] = useState([])
@@ -10,7 +11,7 @@ function Main() {
         <div>Contact List</div>
       </div>
       <div id='container'>
-        {/* your components here */}
+        <ContactList contacts={contacts}/>
       </div>
     </div>
   )
