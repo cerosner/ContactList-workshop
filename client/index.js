@@ -2,9 +2,17 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import ContactList from './ContactList'
+import SingleContact from './SingleContact'
 
 function Main() {
   const [contacts, setContacts] = useState([])
+  const [selectedContact, setContact] = useState(null)
+
+  useEffect(() => {
+    fetchData()
+    .then(res => setContacts(res))
+      .catch(() => `Something's wrong in component lifecycle!`)
+    }, []) // Empty array as second arg runs once, after initial render
 
   function fetchData() {
     return axios.get('/api/contacts')
@@ -12,20 +20,27 @@ function Main() {
     .catch(()=> console.log(`Couldn't fetch :(`))
   }
 
-  useEffect(() => {
-    fetchData()
-    .then(res => setContacts(res))
-    .catch(() => `Something's wrong in component lifecycle!`)
-  }, []) // Empty array as second arg runs once, after initial render
+  function selectContact(contactId) {
+    return axios.get(`/api/contacts/${contactId}`)
+    .then(res => setContact(res.data))
+    .catch(() => `Couldn't fetch :(`)
+  }
 
-  return (
+    return (
     <div id='main'>
       <div id='navbar'>
         <div>Contact List</div>
       </div>
       <div id='container'>
-        <ContactList contacts={contacts} />
+        <ContactList
+          contacts={contacts}
+          selectContact={selectContact}
+        />
       </div>
+      { selectedContact ?
+      <div>
+        <SingleContact contact={selectedContact} />
+      </div> : null }
     </div>
   )
 }
