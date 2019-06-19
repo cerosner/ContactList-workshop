@@ -5,15 +5,18 @@ import ContactList from './ContactList'
 import SingleContact from './SingleContact'
 
 function Main() {
+  // States
   const [contacts, setContacts] = useState([])
   const [selectedContact, setContact] = useState(null)
 
+  // Lifecycle
   useEffect(() => {
     fetchData()
     .then(res => setContacts(res))
-      .catch(() => `Something's wrong in component lifecycle!`)
-    }, []) // Empty array as second arg runs once, after initial render
+    .catch(() => `Something's wrong in component lifecycle!`)
+  }, []) // Empty array as second arg runs once, after initial render
 
+  // Async utility functions
   function fetchData() {
     return axios.get('/api/contacts')
     .then(res => res.data)
@@ -23,10 +26,10 @@ function Main() {
   function selectContact(contactId) {
     return axios.get(`/api/contacts/${contactId}`)
     .then(res => setContact(res.data))
-    .catch(() => `Couldn't fetch :(`)
+    .catch(() => console.log(`Couldn't fetch :(`))
   }
 
-    return (
+  return (
     <div id='main'>
       <div id='navbar'>
         <div>Contact List</div>

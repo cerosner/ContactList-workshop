@@ -12,17 +12,15 @@ const ContactList = props => {
         <th>Phone</th>
         <th>Email</th>
       </tr>
-      {contacts.map(contact => (
-        <ContactRow
-          key={contact.id}
-          contact={contact}
-          selectContact={selectContact}
-        />
-      ))}
+      { contacts.map(contact => (
+      <ContactRow
+        key={contact.id}
+        contact={contact}
+        selectContact={selectContact}
+      />)) }
     </tbody>
   </table>
   )
 }
 
 export default ContactList
-
