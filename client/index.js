@@ -16,7 +16,7 @@ function Main() {
     fetchData()
     .then(res => setContacts(res))
     .catch(() => `Something's wrong in component lifecycle!`)
-  }, [])
+  }, []) // Empty array as second arg runs once, after initial render
 
   return (
     <div id='main'>
