@@ -20,7 +20,7 @@
     "pg-hstore": "^2.3.2",
     "react": "16.8.0",
     "react-dom": "16.8.0",
-    "sequelize": "^4.28.6"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
